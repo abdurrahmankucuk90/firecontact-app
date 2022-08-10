@@ -6,12 +6,12 @@ import {
   TableHead,
   TableRow,
   TableBody,
-  Paper
+  Paper,
 } from "@mui/material";
-
-
+import { useFetch } from "../../utils/functions";
 
 const Contacts = () => {
+  const { isLoading, contactList } = useFetch();
 
   return (
     <div>
@@ -21,24 +21,59 @@ const Contacts = () => {
           <TableHead>
             <TableRow>
               <TableCell>Username</TableCell>
-              <TableCell align="right">Phone Number</TableCell>
-              <TableCell align="right">Gender</TableCell>
-              <TableCell align="right">Delete</TableCell>
-              <TableCell align="right">Edit</TableCell>
+              <TableCell align="left">Phone Number</TableCell>
+              <TableCell align="left">Gender</TableCell>
+              <TableCell align="left">Delete</TableCell>
+              <TableCell align="left">Edit</TableCell>
             </TableRow>
-          </TableHead>        
+          </TableHead>
 
-          <TableBody>           
-              <TableRow>
+          <TableBody>
+            {
+              // /* Bilgiler gelmediği durumda Loading yazısı görünsün */
+              isLoading ? (
+                <TableRow
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell colSpan={5} align="center">
+                    Loading
+                  </TableCell>
+                </TableRow>
+              ) : // Bilgiler olmadığı,boş olduğu  durumda veri bulunamadı mesajı
+              contactList?.length === 0 ? (
+                <TableRow
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell colSpan={5} align="center">
+                    NO RESULT FOUND
+                  </TableCell>
+                </TableRow>
+              ) : (
+                // Bilgiler geldiği zaman aşağıya yazılacak kodlar çalışsın
+                contactList?.map((item, index) => (
+                  <TableRow>
+                    <TableCell textAlign="center">
+                      {item.username.toUpperCase()}
+                    </TableCell>
+                    <TableCell textAlign="center">{item.phoneNumber}</TableCell>
+                    <TableCell textAlign="center">{item.gender}</TableCell>
+                    <TableCell textAlign="center"></TableCell>
+                    <TableCell textAlign="center"></TableCell>
+                  </TableRow>
+                ))
+              )
+            }
+
+            {/* Bilgiler olmadigi, bos oldugu durumda veri bulunamadi mesaji */}
+            {/* Biglier geldigi zaman asagiya yazilacak kodlar calissin */}
+
+            {/* <TableRow>
               <TableCell textAlign="center"></TableCell>
               <TableCell textAlign="center"></TableCell>
-              <TableCell textAlign="center"></TableCell> 
-              <TableCell textAlign="center">
-              </TableCell> 
-              <TableCell textAlign="center">
-              </TableCell> 
-             </TableRow>      
-
+              <TableCell textAlign="center"></TableCell>
+              <TableCell textAlign="center"></TableCell>
+              <TableCell textAlign="center"></TableCell>
+            </TableRow> */}
           </TableBody>
         </Table>
       </TableContainer>
