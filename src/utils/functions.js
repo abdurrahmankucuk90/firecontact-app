@@ -1,6 +1,15 @@
 import firebase from "./firebase";
-import { getDatabase, onValue, push, ref, set } from "firebase/database";
+import {
+  getDatabase,
+  onValue,
+  push,
+  ref,
+  remove,
+  set,
+  update,
+} from "firebase/database";
 import { useEffect, useState } from "react";
+import { Toastify } from "./toastify";
 
 //Bilgi Ekleme
 export const AddUser = (info) => {
@@ -13,6 +22,7 @@ export const AddUser = (info) => {
     phoneNumber: info.phoneNumber,
     gender: info.gender,
   });
+  Toastify('Adding Successfull')
 };
 
 //Bilgi Cagirma
@@ -35,4 +45,19 @@ export const useFetch = () => {
     });
   }, []);
   return { isLoading, contactList };
+};
+
+export const DeleteUser = (id) => {
+  const db = getDatabase(firebase);
+  remove(ref(db, "users/" + id));
+  Toastify('Delete Successfull')
+};
+
+export const UpdateUser = (info) => {
+  const db = getDatabase(firebase);
+  const updates = {}
+  updates["users/" + info.id] = info
+  Toastify('Update Successfull')
+
+  return update(ref(db), updates);
 };
