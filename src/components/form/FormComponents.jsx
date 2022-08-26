@@ -34,12 +34,12 @@ const FormComponent = ({ info, setInfo, handleSubmit }) => {
       <p className="contact-header">
         <div>
           <a
-            href="https://clarusway.com/"
+            href="https://github.com/abdurrahmankucuk90"
             className="design"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <code>{"<Clarusway/> "}</code>
+            <code>{"<Github/> "}</code>
           </a>
         </div>
         <span className="design header">design</span>
@@ -56,6 +56,7 @@ const FormComponent = ({ info, setInfo, handleSubmit }) => {
               value={info.username}
               onChange={handleChange}
               placeholder="Name"
+              autoComplete="none"
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -70,6 +71,7 @@ const FormComponent = ({ info, setInfo, handleSubmit }) => {
               value={info.phoneNumber}
               onChange={handleChange}
               placeholder="Phone Number"
+              autoComplete="none"
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
