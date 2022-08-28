@@ -13,4 +13,4 @@ FIREBASE REALTIME DATABASE
 ## Preview
 
 
-![Form](FireBaseContacts.gif)
+![Form](https://github.com/abdurrahmankucuk90/firecontact-app/blob/master/FireBaseContacts.gif)
